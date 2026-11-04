@@ -4,9 +4,8 @@
 
 Point UNOCTA at your folders of bias, dark, flat and light frames. It sorts them by their FITS
 headers, builds the calibration masters, calibrates, aligns and stacks your lights, and makes a
-color image you can fine-tune with a few sliders. Built to match PixInsight's preprocessing
-(in our tests, bias and dark masters are bit-for-bit identical to PixInsight WBPP), without the
-learning curve.
+color image you can fine-tune with a few sliders. Careful, high-quality processing without
+the learning curve.
 
 ![NGC 7129, made with UNOCTA-image from LRGB + Hα frames](images/ngc7129.jpg)
 <sub>NGC 7129: L, R, G, B and Hα frames, processed by UNOCTA-image with default settings (RC Astro tools installed).</sub>
