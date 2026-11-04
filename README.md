@@ -48,6 +48,8 @@ xattr -d com.apple.quarantine unocta-macos-arm64
    (XISF or FITS). When there are color filters, the color image opens with sliders for
    brightness, color and stars. Save it as PNG, TIFF, XISF or FITS.
 
+![The color image with its sliders](images/color-window.png)
+
 Recognized filters: L, R, G, B, Hα, OIII, SII (also spelled Lum, Red, H-alpha, "Ha 7nm", …).
 If a name isn't recognized, UNOCTA asks once and remembers.
 
