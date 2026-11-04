@@ -13,16 +13,16 @@ learning curve.
 
 ## Download
 
-Get the file for your computer from the
-**[latest release](https://github.com/photon1503/unocta-image-release/releases/latest)**.
-It is the whole program: no installer.
+<p align="center">
+<a href="https://github.com/photon1503/unocta-image-release/releases/latest/download/unocta-windows-x86_64.exe"><img alt="Download for Windows" src="https://img.shields.io/badge/Windows-Download-0078D6?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yIDJoOS41djkuNUgyek0xMi41IDJIMjJ2OS41aC05LjV6TTIgMTIuNWg5LjVWMjJIMnpNMTIuNSAxMi41SDIyVjIyaC05LjV6Ii8%2BPC9zdmc%2B&logoColor=white"></a>
+<a href="https://github.com/photon1503/unocta-image-release/releases/latest/download/unocta-macos-arm64"><img alt="Download for Mac with Apple Silicon" src="https://img.shields.io/badge/macOS-Apple%20Silicon-000000?style=for-the-badge&logo=apple&logoColor=white"></a>
+<a href="https://github.com/photon1503/unocta-image-release/releases/latest/download/unocta-macos-x86_64"><img alt="Download for Mac with Intel processor" src="https://img.shields.io/badge/macOS-Intel-555555?style=for-the-badge&logo=apple&logoColor=white"></a>
+<a href="https://github.com/photon1503/unocta-image-release/releases/latest/download/unocta-linux-x86_64"><img alt="Download for Linux" src="https://img.shields.io/badge/Linux-Download-E95420?style=for-the-badge&logo=linux&logoColor=white"></a>
+</p>
 
-| Computer | File |
-|---|---|
-| Windows (64-bit) | `unocta-windows-x86_64.exe` |
-| Mac with Apple Silicon (M1–M4) | `unocta-macos-arm64` |
-| Mac with Intel processor | `unocta-macos-x86_64` |
-| Linux (64-bit) | `unocta-linux-x86_64` |
+The buttons always download the newest version. It is the whole program: no installer.
+Not sure which Mac you have? Apple menu → *About This Mac*: "Chip: Apple M…" means Apple Silicon.
+All versions and their release notes: [releases](https://github.com/photon1503/unocta-image-release/releases).
 
 **Windows:** double-click the file. If SmartScreen warns about an unknown app, click
 *More info → Run anyway*.
