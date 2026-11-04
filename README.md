@@ -38,7 +38,7 @@ xattr -d com.apple.quarantine unocta-macos-arm64
 
 ## How it works
 
-![The main window](images/main-window.png)
+![The main window](images/main-window-frames.png)
 
 1. **Drop your folders** on the window (or click the dashed area to choose them).
    Sub-folders are included; frames are recognized from their FITS headers.
