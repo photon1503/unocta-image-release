@@ -86,9 +86,17 @@ unocta compose /data/stacked -o /data/final --name M31    # finished color image
 
 Opens the window, with these folders or files already added.
 
+```sh
+unocta gui /data/2026-10-12 /data/calibration
+```
+
 ### `unocta scan [FOLDERS…]`
 
 Lists the groups of frames (bias, darks, flats, lights) found in the folders or files. Changes nothing.
+
+```sh
+unocta scan /data/NGC7129 /data/calibration
+```
 
 ### `unocta masters [FOLDERS…] -o OUT`
 
@@ -104,6 +112,14 @@ Builds master bias, dark, dark flat and flat frames.
 | `--flat-calibration-frame FILE` | Calibrate the flats with this existing master (FITS/XISF) instead. |
 | `--scale-darks-for-flats` | If there is no dark flat or dark with the flats' exposure, use bias + the nearest dark, scaled to the flat exposure. |
 
+```sh
+# Masters as FITS, built again from scratch
+unocta masters /data/calibration -o /data/masters --format fits --rebuild
+
+# Flats without dark flats: calibrate them with bias + a scaled dark
+unocta masters /data/calibration -o /data/masters --scale-darks-for-flats
+```
+
 ### `unocta lights [FOLDERS…] -m MASTERS -o OUT`
 
 Calibrates, aligns and stacks the light frames into one master light per filter.
@@ -116,6 +132,15 @@ Calibrates, aligns and stacks the light frames into one master light per filter.
 | `--clean` | Delete the aligned single frames after a successful run. By default they are kept, so a repeated run is faster. |
 | `--no-local-normalization` | Match the frames' brightness with one offset and scale per frame instead of local normalization. |
 | `--unprocessed-rgb tiff\|xisf\|fits` | Also save R, G and B as one RGB image, only aligned and cropped. |
+
+```sh
+# Stack two nights with masters from two folders, delete the aligned frames afterwards
+unocta lights /data/NGC7129/night1 /data/NGC7129/night2 \
+  -m /data/masters/2026-10 -m /data/masters/darks -o /data/NGC7129/stacked --clean
+
+# Also save an unprocessed RGB TIFF for your own processing
+unocta lights /data/M82 -m /data/masters -o /data/M82/stacked --unprocessed-rgb tiff
+```
 
 ### `unocta compose [FOLDERS…] -o OUT`
 
@@ -163,11 +188,43 @@ image type (broadband, narrowband, galaxy). The defaults below are for nebulae;
 | `--nxt-denoise N` | NoiseXTerminator "denoise" (0–1). Default: 0.9. |
 | **Output** | |
 | `--rotate 0\|90\|180\|270` | Rotate the finished image clockwise (the linear XISF keeps the original orientation). Default: 0. |
+| **AstroBin** | |
+| `--astrobin FOLDER` | Also write an AstroBin upload set to this folder: `<name>.jpg` (full resolution), `acquisition.csv` (AstroBin's CSV import format) and `description.txt`. Nothing is uploaded. The filter IDs come from the window's saved AstroBin settings. |
+| `--frames FOLDER…` | Folders with the light and calibration frames, for the AstroBin table's nights and calibration frame counts. Without it, the table is made from the master lights (one row per master light, no dates). |
+
+```sh
+# Nebula with default settings
+unocta compose /data/NGC7129/stacked -o /data/NGC7129/final --name NGC7129
+
+# Galaxy: white galaxy light, a darker sky, turned a quarter clockwise
+unocta compose /data/M82/stacked -o /data/M82/final --name M82 --galaxy-white --sky-level 0.06 --rotate 90
+
+# Narrowband in Hubble colors, a bit more saturated, without RC Astro's tools
+unocta compose /data/Veil/stacked -o /data/Veil/final --name Veil \
+  --palette sho --sho-colors hubble --saturation 1.6 --no-rc-astro
+
+# Warmer stars, smaller star halos, a little sharpening of the luminance
+unocta compose /data/M31/stacked -o /data/M31/final --name M31 \
+  --star-temperature 3500 --halo-reduction 0.6 --deconvolution 10
+
+# Finished image plus an AstroBin upload set, with nights and calibration counts from the raw frames
+unocta compose /data/Veil/stacked -o /data/Veil/final --name Veil \
+  --astrobin /data/Veil/astrobin --frames /data/Veil/lights /data/calibration
+```
 
 ### `unocta compare A B`
 
 Compares two images pixel by pixel and prints the differences (in 16-bit ADU).
 
+```sh
+unocta compare /data/masters/masterFlat_BIN-1_6248x4176_FILTER-L.xisf /data/pixinsight/masterFlat_L.xisf
+```
+
 ### `unocta update [--yes]`
 
 Checks for a newer version and installs it after asking. `--yes` installs without asking.
+
+```sh
+unocta update          # asks before installing
+unocta update --yes    # e.g. from a script
+```
